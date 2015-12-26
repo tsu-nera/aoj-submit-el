@@ -16,6 +16,7 @@
 
 (defcustom aoj-id nil "Your ID")
 (defcustom aoj-password nil "Your Passwd")
+(defcustom aoj-ojpy-path nil "Your oj.py path")
 
 
 (defvar aoj-supported-languages-alist
@@ -48,6 +49,11 @@
 (defun aoj-open ()
   (interactive)
   (browse-url "http://judge.u-aizu.ac.jp/onlinejudge/status.jsp"))
+
+(defun aoj-test ()
+  (interactive)
+  (shell-command (concat aoj-ojpy-path " --aoj -i "
+                         (file-name-nondirectory (buffer-file-name)) " " (aoj--problemNO))))
 
 (defun aoj--language ()
   (assoc-default
